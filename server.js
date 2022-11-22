@@ -4,8 +4,7 @@
  *  *  Name: yunseok Choi  Student ID:  148765175  Date:  Nov 10th
  * Your app’s URL (from Cyclic Heroku)
  * that I can click to see your application:  *
- * https://obscure-temple-19450.herokuapp.com/
- *  * *************************************************************************/
+https://maroon-elk-garb.cyclic.app/ *  * *************************************************************************/
 const express = require('express');
 const app = express();
 const HTTP_PORT = process.env.PORT || 5500;
@@ -56,7 +55,7 @@ app.use(function (req, res, next) {
 });
 
 app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, '/views/home.html'));
+  res.render('home', { layout: 'main' });
 });
 
 app.get('/BSD', function (req, res) {
