@@ -66,7 +66,7 @@ app.get('/allStudents', function (req, res) {
   data
     .getStudents(req.params.value)
     .then((data) => {
-      res.render('allStudents', { layout: 'main' });
+      res.render('students', { layout: 'main' });
     })
     .catch((err) => {
       res.render('student', { message: 'no results' });
