@@ -1,0 +1,21 @@
+<div class='row'>
+  <div class='col-md-12'>
+    <h2>Student List</h2>
+    <hr />
+    <table class='table'>
+      <thead>
+        <tr>
+          <th>Student<br />Id</th>
+          <th>Name</th>
+          <th>Program</th>
+          <th>GPA</th>
+        </tr>
+      </thead>
+      <tbody>{{#each student}}
+        <tr>
+          <td>{{StudentID}}</td>
+          <td>{{StudentName}}</td>
+          <td>{{Program}}</td>
+          <td>{{GPA}}</td>
+        </tr>
+      </tbody>
