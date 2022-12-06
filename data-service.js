@@ -1,6 +1,6 @@
 var getBSD = [];
-var highGPA = [];
-var AllStudents = [];
+
+var studentList = [];
 const fs = require('fs');
 
 exports.initialize = function () {
@@ -9,31 +9,67 @@ exports.initialize = function () {
       if (err) {
         reject('Failure to read file students.json!');
       } else {
-        getBSD = JSON.parse(data);
-        AllStudents = JSON.parse(data);
-        highGPA = JSON.parse(data[4]);
-        resolve(getBSD);
+        studentList = JSON.parse(data);
       }
+    });
+    return new Promise(function (resolve, reject) {
+      console.log('prepare called');
+      resolve('Data succesfully initialized!');
     });
   });
 };
 
-module.exports.getStudents = function () {
-  return new Promise((resolve, reject) => {
-    if (getBSD.length === 0) reject('no results returned');
-    else resolve(getBSD);
+exports.getAllStudents = function () {
+  return new Promise(function (resolve, reject) {
+    console.log('getAllStudents called');
+
+    resolve(studentList);
+    reject(reason);
   });
 };
 
-module.exports.highGPA = function () {
-  return new Promise((resolve, reject) => {
-    if (highGPA.length === 0) reject('no results returned');
-    else resolve(highGPA);
+exports.getBSDStudents = function () {
+  return new Promise(function (resolve, reject) {
+    console.log('getBSDStudents called');
+    var bsdList = [];
+
+    for (student of studentList) {
+      if (student.program == 'BSD') {
+        bsdList.push(student);
+      }
+    }
+
+    resolve(bsdList);
+    reject(reason);
   });
 };
-module.exports.AllStudents = function () {
-  return new Promise((resolve, reject) => {
-    if (AllStudents.length === 0) reject('no results returned');
-    else resolve(AllStudents);
+
+exports.getCPA = function () {
+  return new Promise(function (resolve, reject) {
+    console.log('getCPA called');
+
+    resolve(studentList);
+    reject(reason);
+  });
+};
+
+exports.highGPA = function () {
+  return new Promise(function (resolve, reject) {
+    console.log('highGPA called');
+    var highestStudent = {
+      studId: 0,
+      name: 'dummy',
+      program: 'dummy',
+      gpa: 0,
+    };
+
+    for (student of studentList) {
+      if (student.gpa > highestStudent.gpa) {
+        highestStudent = student;
+      }
+    }
+
+    resolve(highestStudent);
+    reject(reason);
   });
 };
